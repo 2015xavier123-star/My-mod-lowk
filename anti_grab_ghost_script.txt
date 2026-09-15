@@ -8,7 +8,7 @@ local LocalPlayer = Players.LocalPlayer
 
 -- Configurations
 -- Configurations
-local SETTINGS = {
+SETTINGS = {
     ANTI_GRAB = false -- Can now be safely changed to true/false at runtime!
 }
 local GHOST_SPEED = 16
