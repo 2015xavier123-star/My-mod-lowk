@@ -7,10 +7,14 @@ local GuiService = game:GetService("GuiService")
 local LocalPlayer = Players.LocalPlayer
 
 -- Configurations
-local SETTINGS_ANTI_GRAB = false
-local GHOST_SPEED = 16
-local SYNC_TIMEOUT = 0.8 -- Maximum time allowed to verify position synchronization
-local CLEANUP_DELAY = 0.5 -- Delayed time before destroying the ghost clone to check for re-grabs
+-- Configurations
+local SETTINGS = {
+    ANTI_GRAB = false, -- Can now be safely changed to true/false at runtime!
+}
+local GHOST_SPEED = 16,
+local SYNC_TIMEOUT = 0.8,
+local CLEANUP_DELAY = 0.5
+
 
 -- Remote Event Folders
 local grabEventsFolder = ReplicatedStorage:WaitForChild("GrabEvents", 30)
@@ -355,7 +359,7 @@ local function setupPartOwnerListener(character)
     if not hrp then return end
 
     character.DescendantAdded:Connect(function(child)
-        if not SETTINGS_ANTI_GRAB then return end
+        if not SETTINGS.ANTI_GRAB then return end
         if not (child:IsA("StringValue") and child.Name == "PartOwner" and child.Value) then return end
         if child.Value == LocalPlayer.Name then return end
 
@@ -384,7 +388,7 @@ LocalPlayer.CharacterAdded:Connect(onCharacterAdded)
 
 -- Held state listener
 isHeldValue.Changed:Connect(function(isBeingHeld)
-    if isBeingHeld and SETTINGS_ANTI_GRAB then
+    if isBeingHeld and SETTINGS.ANTI_GRAB then
         local character = LocalPlayer.Character
         if character then
             createVisualClone(character)
