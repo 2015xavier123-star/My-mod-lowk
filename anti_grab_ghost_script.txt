@@ -9,10 +9,10 @@ local LocalPlayer = Players.LocalPlayer
 -- Configurations
 -- Configurations
 local SETTINGS = {
-    ANTI_GRAB = false, -- Can now be safely changed to true/false at runtime!
+    ANTI_GRAB = false -- Can now be safely changed to true/false at runtime!
 }
-local GHOST_SPEED = 16,
-local SYNC_TIMEOUT = 0.8,
+local GHOST_SPEED = 16
+local SYNC_TIMEOUT = 0.8
 local CLEANUP_DELAY = 0.5
 
 
